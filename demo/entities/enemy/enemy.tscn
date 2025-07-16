@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwjvy0m0aget5"]
+
+[ext_resource type="Texture2D" uid="uid://dtqsm8pgcmpji" path="res://assets/textures/enemy/Ship/Level 1/Enemy.png" id="1_ksmh7"]
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="2_dt443"]
+[ext_resource type="AudioStream" uid="uid://wpw21ujjrcv8" path="res://assets/audio/SFX/MeteorExplosion.mp3" id="2_im2q6"]
+[ext_resource type="PackedScene" uid="uid://dpo0hns7esqy7" path="res://entities/laser/enemy_laser.tscn" id="3_4wwj3"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="4_d50e0"]
+
+[node name="Enemy" type="EnemyBase" groups=["enemies"]]
+explosion_scene = ExtResource("2_dt443")
+bullet_scene = ExtResource("3_4wwj3")
+damage_text_scene = ExtResource("4_d50e0")
+z_index = 10
+position = Vector2(0, 9473.26)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("1_ksmh7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.1, 0.7875)
+scale = Vector2(2.87, 3.00125)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(-19, 38, -12, 38, -2, 27, 4, 26, 13, 39, 22, 39, 39, -33, 31, -40, -28, -39, -35, -31)
+
+[node name="SfxDestroy" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.7, 0.7)
+stream = ExtResource("2_im2q6")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(0.999999, 20)
+scale = Vector2(0.7, 0.7)

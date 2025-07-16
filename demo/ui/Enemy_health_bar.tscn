@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://5xl83ut3h8mr"]
+
+[ext_resource type="PackedScene" uid="uid://b1gesq5eqt4gb" path="res://ui/health_bar.tscn" id="1_hwhwk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwhwk"]
+bg_color = Color(0.847059, 0, 0.282353, 1)
+
+[node name="HealthBar" instance=ExtResource("1_hwhwk")]
+theme_override_styles/fill = SubResource("StyleBoxFlat_hwhwk")

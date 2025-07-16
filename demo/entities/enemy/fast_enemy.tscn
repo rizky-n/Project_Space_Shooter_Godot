@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwbrtgaind525"]
+
+[ext_resource type="PackedScene" uid="uid://bwjvy0m0aget5" path="res://entities/enemy/enemy.tscn" id="1_iywpl"]
+[ext_resource type="Texture2D" uid="uid://bhxykr7hwttqt" path="res://assets/textures/enemy/Ship/Level 1/EnemyFast.png" id="2_16ljs"]
+
+[node name="FastEnemy" instance=ExtResource("1_iywpl")]
+health = 8.0
+damage = 4.0
+speed = 250.0
+bullet_scene = null
+position = Vector2(0, 40231.2)
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 3.14159
+texture = ExtResource("2_16ljs")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
+position = Vector2(0.849997, 0.193746)
+scale = Vector2(5.715, 5.18062)
+
+[node name="CollisionPolygon2D" parent="." index="2"]
+polygon = PackedVector2Array(-19, 38, -5.71429, 68.5714, -2, 27, 5.71429, 65.7143, 11.4286, 51.4286, 20, 28.5714, 71.4286, -40, 25.7143, -65.7143, -25.7143, -65.7143, -71.4286, -40)

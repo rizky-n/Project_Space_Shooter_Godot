@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://dp8vmcqok4kgj"]
+
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="1_cbdi5"]
+[ext_resource type="PackedScene" uid="uid://dpo0hns7esqy7" path="res://entities/laser/enemy_laser.tscn" id="2_m5fi8"]
+[ext_resource type="Texture2D" uid="uid://c3xg6f6iq34hy" path="res://assets/textures/enemy/Ship/Level 1/TankerShip.png" id="2_wsi5x"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="3_wlq7l"]
+[ext_resource type="AudioStream" uid="uid://wpw21ujjrcv8" path="res://assets/audio/SFX/MeteorExplosion.mp3" id="5_fuohd"]
+
+[node name="Tanker Enemy" type="TankerEnemy" groups=["enemies"]]
+health = 40.0
+damage = 4.0
+explosion_scene = ExtResource("1_cbdi5")
+bullet_scene = ExtResource("2_m5fi8")
+damage_text_scene = ExtResource("3_wlq7l")
+score_value = 250
+z_index = 10
+position = Vector2(0, 27953.4)
+scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("2_wsi5x")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+visible = false
+position = Vector2(-0.909091, -1.15057)
+scale = Vector2(1.90909, 2.47869)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(-15.7143, -10, -15.7143, -1.42857, -14.2857, 0, -12.8571, -1.42857, -8.57143, 4.28571, -8.57143, 8.57143, -5.71429, 10, -2.85714, 20, 1.42857, 20, 4.28571, 10, 7.14286, 8.57143, 7.14286, 4.28571, 11.4286, 0, 12.8571, 1.42857, 15.7143, -1.42857, 15.7143, -10, 4.28571, -20, -5.71429, -20)
+
+[node name="SfxDestroy" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.7, 0.7)
+stream = ExtResource("5_fuohd")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+scale = Vector2(0.7, 0.7)
+
+[node name="Muzzle1" type="Marker2D" parent="Muzzle"]
+position = Vector2(6.66667, 17.3333)
+
+[node name="Muzzle2" type="Marker2D" parent="Muzzle"]
+position = Vector2(-6.66667, 17.3333)
+
+[node name="Muzzle3" type="Marker2D" parent="Muzzle"]
+position = Vector2(34, -15.3333)
+rotation = -0.16057
+
+[node name="Muzzle4" type="Marker2D" parent="Muzzle"]
+position = Vector2(28.6667, 2)
+rotation = -0.16057
+
+[node name="Muzzle5" type="Marker2D" parent="Muzzle"]
+position = Vector2(-28.6667, 2.66667)
+rotation = 0.16057
+
+[node name="Muzzle6" type="Marker2D" parent="Muzzle"]
+z_index = 10
+position = Vector2(-34, -15.3333)
+rotation = 0.21293

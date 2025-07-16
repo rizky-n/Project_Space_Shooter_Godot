@@ -1,0 +1,122 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnpg3pqpju40w"]
+
+[ext_resource type="Script" uid="uid://b8cct4gb6lapw" path="res://script/entities/boss_lvl_1.gd" id="1_hnq8w"]
+[ext_resource type="Texture2D" uid="uid://dqborld7u6xeu" path="res://assets/textures/enemy/Ship/Level 1/enemyBoss.png" id="1_pscnj"]
+[ext_resource type="PackedScene" uid="uid://bwjvy0m0aget5" path="res://entities/enemy/enemy.tscn" id="2_hh32q"]
+[ext_resource type="PackedScene" uid="uid://cmupo5fc2pjra" path="res://entities/laser/boss_laser.tscn" id="2_j6dvc"]
+[ext_resource type="PackedScene" uid="uid://pg5e5s6dyuiy" path="res://entities/boss_rocket.tscn" id="3_4vbfi"]
+[ext_resource type="PackedScene" uid="uid://cwbrtgaind525" path="res://entities/enemy/fast_enemy.tscn" id="3_tn73l"]
+[ext_resource type="PackedScene" uid="uid://dof7131bqjdni" path="res://entities/laser/boss_laser_beam.tscn" id="4_cnts3"]
+[ext_resource type="PackedScene" uid="uid://cvsgd2p7rd3d2" path="res://entities/enemy/spinning_enemy.tscn" id="4_xr8qp"]
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="5_4vbfi"]
+[ext_resource type="PackedScene" uid="uid://dmdffh8xmk5sm" path="res://entities/sustained_explosion.tscn" id="9_tn73l"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="10_xr8qp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnq8w"]
+atlas = ExtResource("1_pscnj")
+region = Rect2(0, 0, 264, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnx5e"]
+atlas = ExtResource("1_pscnj")
+region = Rect2(264, 0, 264, 88)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3mfq"]
+atlas = ExtResource("1_pscnj")
+region = Rect2(528, 0, 264, 88)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6dvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnq8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnx5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3mfq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="BossLvl1" type="CharacterBody2D" groups=["boss"]]
+scale = Vector2(2, 2)
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_hnq8w")
+normal_enemy_scene = ExtResource("2_hh32q")
+speed_enemy_scene = ExtResource("3_tn73l")
+spinning_enemy_scene = ExtResource("4_xr8qp")
+spawn_minion_cooldown = 8.0
+basic_bullet_scene = ExtResource("2_j6dvc")
+rocket_scene = ExtResource("3_4vbfi")
+laser_beam_scene = ExtResource("4_cnts3")
+explosion_scene = ExtResource("5_4vbfi")
+sustained_explosion_scene = ExtResource("9_tn73l")
+damage_text_scene = ExtResource("10_xr8qp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_j6dvc")
+animation = &"idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-11, 43, -6, 43, -4, 37, -1, 34, 2, 34, 4, 36, 4, 41, 6, 43, 11, 43, 13, 39, 13, 30, 14, 29, 14, 22, 15, 22, 15, 17, 17, 16, 17, 13, 21, 15, 21, 20, 24, 24, 29, 27, 35, 24, 37, 21, 37, 16, 41, 17, 46, 18, 50, 19, 50, 25, 52, 29, 54, 31, 58, 31, 60, 29, 61, 28, 63, 23, 68, 21, 79, 24, 82, 26, 82, 31, 85, 34, 90, 34, 92, 31, 92, 27, 96, 28, 126, 41, 131, 39, 131, 33, 123, 23, 120, 6, 118, 2, 111, 2, 112, 5, 103, 0, 99, -8, 81, -26, 70, -26, 62, -19, 58, -22, 55, -26, 48, -25, 45, -21, 39, -17, 35, -20, 19, -20, 12, -28, -14, -28, -19, -20, -46, -20, -49, -27, -58, -26, -58, -22, -61, -20, -72, -26, -81, -26, -89, -18, -97, -11, -102, -2, -107, 4, -111, 7, -112, 4, -120, 3, -121, 9, -122, 14, -124, 20, -124, 23, -132, 34, -132, 39, -129, 41, -92, 27, -92, 32, -90, 34, -86, 34, -82, 31, -83, 25, -69, 21, -66, 23, -64, 23, -60, 29, -56, 30, -52, 29, -50, 24, -51, 18, -38, 15, -38, 20, -35, 24, -32, 21, -31, 26, -29, 26, -27, 25, -26, 23, -25, 24, -24, 24, -22, 22, -22, 19, -19, 12, -16, 23, -15, 29, -15, 40)
+
+[node name="Muzzles" type="Node2D" parent="."]
+
+[node name="Muzzle1" type="Marker2D" parent="Muzzles"]
+position = Vector2(9, 46)
+
+[node name="Muzzle2" type="Marker2D" parent="Muzzles"]
+position = Vector2(-8, 46)
+
+[node name="Muzzle3" type="Marker2D" parent="Muzzles"]
+position = Vector2(-87, 37)
+
+[node name="Muzzle4" type="Marker2D" parent="Muzzles"]
+position = Vector2(-56, 32)
+
+[node name="Muzzle5" type="Marker2D" parent="Muzzles"]
+position = Vector2(-34, 27)
+
+[node name="Muzzle6" type="Marker2D" parent="Muzzles"]
+position = Vector2(-29, 30)
+
+[node name="Muzzle7" type="Marker2D" parent="Muzzles"]
+position = Vector2(-24, 27)
+
+[node name="Muzzle8" type="Marker2D" parent="Muzzles"]
+position = Vector2(25, 27)
+
+[node name="Muzzle9" type="Marker2D" parent="Muzzles"]
+position = Vector2(30, 30)
+
+[node name="Muzzle10" type="Marker2D" parent="Muzzles"]
+position = Vector2(35, 27)
+
+[node name="Muzzle11" type="Marker2D" parent="Muzzles"]
+position = Vector2(56, 32)
+
+[node name="Muzzle12" type="Marker2D" parent="Muzzles"]
+position = Vector2(87, 37)
+
+[node name="AttackTimers" type="Timer" parent="."]
+
+[node name="BasicShotTimer" type="Timer" parent="AttackTimers"]
+
+[node name="RepositionTimer" type="Timer" parent="AttackTimers"]
+
+[node name="SweepingShotTimer" type="Timer" parent="AttackTimers"]
+
+[node name="SpawnMinionTimer" type="Timer" parent="AttackTimers"]
+
+[node name="HomingRocketTimer" type="Timer" parent="AttackTimers"]
+
+[node name="MinionSpawnLeft" type="Marker2D" parent="."]
+position = Vector2(-72, 0)
+
+[node name="MinionSpawnRight" type="Marker2D" parent="."]
+position = Vector2(72, 0)

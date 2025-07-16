@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgeiftgesftar"]
+
+[ext_resource type="Script" uid="uid://cqmmoc6apvhk2" path="res://script/player/power_up.gd" id="1_lrerb"]
+[ext_resource type="Texture2D" uid="uid://domftoaxubvil" path="res://assets/textures/entities/skill/powerup/SparkleSKill4.png" id="2_lrerb"]
+[ext_resource type="AudioStream" uid="uid://c2ci6rpwwiulm" path="res://assets/audio/SFX/power_up.mp3" id="3_0js4s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0js4s"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(0, 0, 146, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cf3wf"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(146, 0, 146, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2m1g"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(292, 0, 146, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifkv5"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(459, 0, 153, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvygi"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(612, 0, 153, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pehn"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(765, 0, 153, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b52oc"]
+atlas = ExtResource("2_lrerb")
+region = Rect2(918, 0, 153, 223)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vvygi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0js4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cf3wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2m1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifkv5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvygi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pehn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b52oc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Power Up" type="Node2D"]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_lrerb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vvygi")
+
+[node name="SfxActivate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_0js4s")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bomckm7lga8aq"]
+
+[ext_resource type="Script" uid="uid://bvmafis4cy241" path="res://assets/autoload/music_controller.gd" id="1_8rs6k"]
+[ext_resource type="AudioStream" uid="uid://dbtl2m4ads1xe" path="res://assets/audio/Music/MenuBacksound.wav" id="2_52upn"]
+[ext_resource type="AudioStream" uid="uid://bjud5lki58egn" path="res://assets/audio/SFX/defeat.mp3" id="3_mhicy"]
+
+[node name="MusicController" type="Node"]
+script = ExtResource("1_8rs6k")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_52upn")
+volume_db = 10.4
+bus = &"MUSIC"
+
+[node name="DefeatMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mhicy")
+volume_db = 12.56
+bus = &"MUSIC"

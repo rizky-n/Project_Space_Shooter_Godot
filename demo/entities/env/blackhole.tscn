@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://yg1nojm6jyvy"]
+
+[ext_resource type="Texture2D" uid="uid://pfvk6ghcfo0f" path="res://assets/textures/env/Pixel Art Space/Black Hole2.png" id="1_qaxb8"]
+[ext_resource type="Script" uid="uid://3cnafpwhnesm" path="res://script/entities/object_scenery.gd" id="2_0kj00"]
+
+[node name="blackhole" type="Sprite2D"]
+z_index = -10
+texture = ExtResource("1_qaxb8")
+script = ExtResource("2_0kj00")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1, 2)
+scale = Vector2(2.55, 2.3)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

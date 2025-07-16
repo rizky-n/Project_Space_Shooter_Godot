@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn2t8ua3pm008"]
+
+[ext_resource type="Texture2D" uid="uid://csqbt04mltob6" path="res://assets/textures/env/Pixel Art Space/Earth.png" id="1_1prmm"]
+[ext_resource type="Script" uid="uid://3cnafpwhnesm" path="res://script/entities/object_scenery.gd" id="2_ef4ko"]
+
+[node name="planet2" type="Sprite2D"]
+z_index = -10
+texture = ExtResource("1_1prmm")
+script = ExtResource("2_ef4ko")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = -10
+position = Vector2(1.75, 2.5)
+scale = Vector2(2.925, 2.85)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

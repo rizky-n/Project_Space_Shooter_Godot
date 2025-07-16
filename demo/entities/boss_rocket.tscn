@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://pg5e5s6dyuiy"]
+
+[ext_resource type="Script" uid="uid://cbhh6cinr4nuu" path="res://script/entities/boss_rocket.gd" id="1_naqha"]
+[ext_resource type="Texture2D" uid="uid://vahlc7js6055" path="res://assets/textures/enemy/Ship/Level 1/Rocket.png" id="2_6wswt"]
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="2_kl7wx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kl7wx"]
+atlas = ExtResource("2_6wswt")
+region = Rect2(444, 0, 37, 125)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8154q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kl7wx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fj5qm"]
+height = 84.0
+
+[node name="Boss Rocket" type="Area2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_naqha")
+explosion_scene = ExtResource("2_kl7wx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8154q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_fj5qm")

@@ -1,0 +1,263 @@
+[gd_scene load_steps=13 format=3 uid="uid://bjtune07b2m0c"]
+
+[ext_resource type="Script" uid="uid://dmdqdrbm71pyv" path="res://ui/mainmenu.gd" id="1_nudk7"]
+[ext_resource type="FontFile" uid="uid://7u5pmtqh8ytc" path="res://assets/fonts/Pixellari.ttf" id="2_wxwbn"]
+[ext_resource type="Theme" uid="uid://bqrj1cxc051ef" path="res://button-main.tres" id="3_v8ire"]
+[ext_resource type="Script" uid="uid://dc4jme8nkgfdx" path="res://script/world/scrolling_background.gd" id="4_4amms"]
+[ext_resource type="Texture2D" uid="uid://cobskgmkbuwxa" path="res://assets/textures/env/background/bg_space.jpg" id="5_4amms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npkxa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8ire"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e6rwi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bl2cu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_61o3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n3v8l"]
+
+[sub_resource type="Theme" id="Theme_v8ire"]
+CheckButton/colors/font_hover_color = Color(1, 1, 0, 1)
+CheckButton/colors/font_hover_pressed_color = Color(1, 1, 0, 1)
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_npkxa")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_v8ire")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_e6rwi")
+CheckButton/styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bl2cu")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_61o3f")
+CheckButton/styles/pressed = SubResource("StyleBoxEmpty_n3v8l")
+
+[node name="Mainmenu" type="Node2D"]
+script = ExtResource("1_nudk7")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 100.0
+offset_right = 540.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 90
+text = "Elytra"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_top = 400.0
+offset_right = 540.0
+offset_bottom = 900.0
+
+[node name="MainButtons" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 44
+
+[node name="play" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="settings" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 40
+text = "SETTINGS"
+
+[node name="credits" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 40
+text = "CREDITS"
+
+[node name="quit" type="Button" parent="CenterContainer/MainButtons"]
+layout_mode = 2
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="fullscreen" type="CheckButton" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+theme = SubResource("Theme_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 28
+text = "Fullscreen"
+
+[node name="mainvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/mainvolslider"]
+layout_mode = 1
+offset_left = -14.0
+offset_top = -25.0
+offset_right = 157.0
+offset_bottom = 3.0
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 25
+text = "Main Volume"
+horizontal_alignment = 1
+
+[node name="musicvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/musicvolslider"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -25.0
+offset_right = 152.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 25
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="sfxvolslider" type="HSlider" parent="CenterContainer/SettingsMenu"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 1.0
+
+[node name="Label" type="Label" parent="CenterContainer/SettingsMenu/sfxvolslider"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 133.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 25
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="back" type="Button" parent="CenterContainer/SettingsMenu"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 25
+text = "BACK
+"
+
+[node name="CreditsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="PL" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.603922, 0, 1)
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 24
+text = "Project Leader"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="PL-name" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 28
+text = "Ahmad Fadhel "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GD" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.603922, 0, 1)
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 24
+text = "Game Designers"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GD-name" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 28
+text = "Ahmad Fadhel
+Brian Jonathan
+Rizky Nurliansyah"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GP" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.603922, 0, 1)
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 24
+text = "Game Programmers"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GP-name" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 28
+text = "Ahmad Fadhel
+Brian Jonathan
+Rizky Nurliansyah"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="GP2" type="Label" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.603922, 0, 1)
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="back" type="Button" parent="CenterContainer/CreditsMenu"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_v8ire")
+theme_override_fonts/font = ExtResource("2_wxwbn")
+theme_override_font_sizes/font_size = 25
+text = "BACK
+"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("4_4amms")
+scroll_speed = 50.0
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("5_4amms")
+centered = false
+
+[connection signal="pressed" from="CenterContainer/MainButtons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="CenterContainer/MainButtons/quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="CenterContainer/SettingsMenu/fullscreen" to="." method="_on_fullscreen_toggled"]
+[connection signal="drag_ended" from="CenterContainer/SettingsMenu/mainvolslider" to="." method="_on_mainvolslider_drag_ended"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/mainvolslider" to="." method="_on_mainvolslider_value_changed"]
+[connection signal="drag_ended" from="CenterContainer/SettingsMenu/musicvolslider" to="." method="_on_musicvolslider_drag_ended"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/musicvolslider" to="." method="_on_musicvolslider_value_changed"]
+[connection signal="drag_ended" from="CenterContainer/SettingsMenu/sfxvolslider" to="." method="_on_sfxvolslider_drag_ended"]
+[connection signal="value_changed" from="CenterContainer/SettingsMenu/sfxvolslider" to="." method="_on_sfxvolslider_value_changed"]
+[connection signal="pressed" from="CenterContainer/SettingsMenu/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/CreditsMenu/back" to="." method="_on_back_pressed"]

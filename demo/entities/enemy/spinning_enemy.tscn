@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvsgd2p7rd3d2"]
+
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="1_w3d5c"]
+[ext_resource type="PackedScene" uid="uid://dpo0hns7esqy7" path="res://entities/laser/enemy_laser.tscn" id="2_afpsv"]
+[ext_resource type="Texture2D" uid="uid://brl4c5j2k73bu" path="res://assets/textures/enemy/Ship/Level 1/SpinningEnemy.png" id="2_dk0i3"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="3_28luo"]
+[ext_resource type="AudioStream" uid="uid://wpw21ujjrcv8" path="res://assets/audio/SFX/MeteorExplosion.mp3" id="5_uskir"]
+
+[node name="Spinning Enemy" type="SpinningEnemy" groups=["enemies"]]
+rotation_speed = 1.5
+health = 25.0
+explosion_scene = ExtResource("1_w3d5c")
+bullet_scene = ExtResource("2_afpsv")
+damage_text_scene = ExtResource("3_28luo")
+score_value = 150
+z_index = 10
+position = Vector2(0, 113562)
+rotation = 699.745
+scale = Vector2(0.9, 0.9)
+collision_layer = 2
+collision_mask = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("2_dk0i3")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.5, 11.3403)
+scale = Vector2(7.21667, 7.08819)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+scale = Vector2(0.7, 0.7)
+polygon = PackedVector2Array(-52.8571, -18.5714, -31.4286, 4.28571, -28.5714, 8.57143, -28.5714, 48.5714, -21.4286, 52.8571, -17.1429, 68.5714, -10, 70, -2.85714, 58.5714, 10, 55.7143, 24.2857, 17.1429, 57.1429, 0, 55.7143, -11.4286, 70, -21.4286, 67.1429, -28.5714, 47.1429, -30, 44.2857, -37.1429, 8.57143, -28.5714, 2.85714, -28.5714, -28.5714, -48.5714, -38.5714, -42.8571, -52.8571, -50, -57.1429, -45.7143, -48.5714, -31.4286)
+
+[node name="SfxDestroy" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(0.7, 0.7)
+stream = ExtResource("5_uskir")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+scale = Vector2(0.7, 0.7)
+
+[node name="Muzzle1" type="Marker2D" parent="Muzzle"]
+position = Vector2(-55.5556, -46.6667)
+
+[node name="Muzzle2" type="Marker2D" parent="Muzzle"]
+position = Vector2(-13.3333, 71.1111)
+
+[node name="Muzzle3" type="Marker2D" parent="Muzzle"]
+position = Vector2(68.8889, -24.4444)

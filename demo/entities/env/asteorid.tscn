@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dghv2id4xeu06"]
+
+[ext_resource type="Texture2D" uid="uid://cgu6g02e0ld8p" path="res://assets/textures/env/Pixel Art Space/Asteroid.png" id="1_chnih"]
+[ext_resource type="Script" uid="uid://3cnafpwhnesm" path="res://script/entities/object_scenery.gd" id="2_ovm77"]
+
+[node name="Asteorid" type="Sprite2D"]
+z_index = -10
+texture = ExtResource("1_chnih")
+script = ExtResource("2_ovm77")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = -10
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

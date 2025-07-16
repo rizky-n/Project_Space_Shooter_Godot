@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmupo5fc2pjra"]
+
+[ext_resource type="PackedScene" uid="uid://dpo0hns7esqy7" path="res://entities/laser/enemy_laser.tscn" id="1_rqy5x"]
+[ext_resource type="Texture2D" uid="uid://b0o5xbsip7w1d" path="res://assets/textures/entities/bullet/08.png" id="2_8re0g"]
+[ext_resource type="Texture2D" uid="uid://btmn6nor5b2d" path="res://assets/textures/entities/bullet/45.png" id="3_tf6u1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxyk3"]
+atlas = ExtResource("2_8re0g")
+region = Rect2(0, 0, 122, 119)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nidec"]
+atlas = ExtResource("3_tf6u1")
+region = Rect2(0, 0, 248, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2y7v0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxyk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nidec")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy Laser" instance=ExtResource("1_rqy5x")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_2y7v0")

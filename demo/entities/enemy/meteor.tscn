@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://ck2tjwdvuhg1k"]
+
+[ext_resource type="Script" uid="uid://401euw70wp4n" path="res://script/entities/meteor.gd" id="1_bnrxx"]
+[ext_resource type="Texture2D" uid="uid://cf4cbx5yjlobn" path="res://assets/textures/enemy/meteor/Asteroid 01 - Explode.png" id="1_yc4q1"]
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="2_82ocp"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="3_g1gou"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnrxx"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82ocp"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1gou"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liu52"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7mm3"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(384, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jbkt"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(480, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ytbc"]
+atlas = ExtResource("1_yc4q1")
+region = Rect2(576, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmm3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnrxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82ocp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1gou")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liu52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7mm3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jbkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ytbc")
+}],
+"loop": false,
+"name": &"destroy",
+"speed": 8.0
+}]
+
+[node name="Meteor" type="Area2D"]
+z_index = 10
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_bnrxx")
+explosion_scene = ExtResource("2_82ocp")
+damage_text_scene = ExtResource("3_g1gou")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lmm3a")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-19, -5, -19, 5, -16, 11, -7, 16, 5, 16, 15, 10, 19, 1, 14, -6, 8, -9, 3, -14, -2, -15, -11, -14)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, 0.5)
+scale = Vector2(2.25, 1.85)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

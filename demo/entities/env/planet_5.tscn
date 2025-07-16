@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm3ailqdl5nb0"]
+
+[ext_resource type="Texture2D" uid="uid://bkdgeu8apodw3" path="res://assets/textures/env/PlanetsPNG (Awal)/Planet_02.png" id="1_ujl07"]
+[ext_resource type="Script" uid="uid://3cnafpwhnesm" path="res://script/entities/object_scenery.gd" id="2_yewhx"]
+
+[node name="Planet5" type="Sprite2D"]
+z_index = -10
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ujl07")
+script = ExtResource("2_yewhx")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = -1
+position = Vector2(1.99998, -8.49997)
+scale = Vector2(42.8, 40.65)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_exited"]

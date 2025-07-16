@@ -1,0 +1,93 @@
+[gd_scene load_steps=17 format=3 uid="uid://cagiu82pc5pu1"]
+
+[ext_resource type="Script" uid="uid://dsdi4u8d0mvuk" path="res://script/entities/player_laser.gd" id="1_ckrlj"]
+[ext_resource type="PackedScene" uid="uid://bjwvm5jiy8g1q" path="res://entities/laser/laser_effect.tscn" id="2_d42kf"]
+[ext_resource type="Texture2D" uid="uid://usngg6stp005" path="res://assets/textures/entities/bullet/01.png" id="3_4c2o5"]
+[ext_resource type="Texture2D" uid="uid://3xn3pi65sfom" path="res://assets/textures/entities/bullet/11.png" id="4_jus6q"]
+[ext_resource type="Texture2D" uid="uid://20ks8jt3us7" path="res://assets/textures/entities/bullet/15.png" id="5_kixwh"]
+[ext_resource type="Texture2D" uid="uid://dpy8p37ambkpk" path="res://assets/textures/entities/skill/powerup/SparkleSKill2(1).png" id="5_qrsep"]
+[ext_resource type="Texture2D" uid="uid://iph4arq6021o" path="res://assets/textures/entities/skill/powerup/SparkleSKill3.png" id="6_4fv2x"]
+[ext_resource type="AudioStream" uid="uid://c77at63if2iyx" path="res://assets/audio/SFX/powaerUpLaser.mp3" id="8_4fv2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj6lu"]
+atlas = ExtResource("3_4c2o5")
+region = Rect2(0, 0, 126, 121)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdpsx"]
+atlas = ExtResource("4_jus6q")
+region = Rect2(0, 0, 249, 144)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o02dr"]
+atlas = ExtResource("5_kixwh")
+region = Rect2(0, 0, 243, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b84xh"]
+atlas = ExtResource("5_qrsep")
+region = Rect2(0, 41, 114, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klgcx"]
+atlas = ExtResource("5_qrsep")
+region = Rect2(147, 0, 147, 124)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jidcm"]
+atlas = ExtResource("6_4fv2x")
+region = Rect2(0, 0, 282, 156)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sgrkp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj6lu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdpsx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o02dr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b84xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klgcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jidcm")
+}],
+"loop": false,
+"name": &"power_shoot_fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_djybg"]
+
+[node name="Player Laser" type="Area2D" groups=["player_lasers"]]
+scale = Vector2(0.6, 0.6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_ckrlj")
+damage = 2.0
+hit_effect_scene = ExtResource("2_d42kf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -3)
+rotation = -1.5708
+sprite_frames = SubResource("SpriteFrames_sgrkp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_djybg")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -3)
+
+[node name="SfxPowerUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4fv2x")
+volume_db = -0.985
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

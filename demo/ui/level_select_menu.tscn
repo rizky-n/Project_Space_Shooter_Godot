@@ -1,0 +1,152 @@
+[gd_scene load_steps=8 format=3 uid="uid://dsptat8x2gaaq"]
+
+[ext_resource type="Script" uid="uid://b8fds1bxtovqj" path="res://ui/level_select_menu.gd" id="1_uxbjq"]
+[ext_resource type="Texture2D" uid="uid://cobskgmkbuwxa" path="res://assets/textures/env/background/bg_space.jpg" id="2_w8ujy"]
+[ext_resource type="Texture2D" uid="uid://dx7cw54errgn5" path="res://assets/textures/env/textures/lockicon.png" id="3_jr33h"]
+[ext_resource type="Texture2D" uid="uid://bhuot3tkcmuy6" path="res://assets/textures/env/background/Stage1Complete.png" id="3_mqpoe"]
+[ext_resource type="Texture2D" uid="uid://b1ke6kacw2b36" path="res://assets/textures/env/background/DisplayStage.png" id="3_uxbjq"]
+[ext_resource type="FontFile" uid="uid://7u5pmtqh8ytc" path="res://assets/fonts/Pixellari.ttf" id="3_vu3je"]
+[ext_resource type="Script" uid="uid://dc4jme8nkgfdx" path="res://script/world/scrolling_background.gd" id="6_guldo"]
+
+[node name="LevelSelectMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uxbjq")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 388.0
+offset_right = 232.0
+offset_bottom = 538.0
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 310.0
+offset_top = 390.0
+offset_right = 470.0
+offset_bottom = 537.0
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 618.0
+offset_right = 355.0
+offset_bottom = 765.0
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 201.0
+offset_right = 496.0
+offset_bottom = 243.0
+theme_override_fonts/font = ExtResource("3_vu3je")
+theme_override_font_sizes/font_size = 40
+text = "SELECT STAGE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stage1" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 362.0
+offset_right = 204.0
+offset_bottom = 386.0
+theme_override_fonts/font = ExtResource("3_vu3je")
+theme_override_font_sizes/font_size = 23
+text = "STAGE 1"
+horizontal_alignment = 1
+
+[node name="lvl1_locked" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 395.0
+offset_right = 227.0
+offset_bottom = 532.0
+mouse_filter = 2
+texture = ExtResource("3_uxbjq")
+
+[node name="lvl1_completed" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 395.0
+offset_right = 227.0
+offset_bottom = 532.0
+mouse_filter = 2
+texture = ExtResource("3_mqpoe")
+
+[node name="Stage2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 361.0
+offset_right = 446.0
+offset_bottom = 385.0
+theme_override_fonts/font = ExtResource("3_vu3je")
+theme_override_font_sizes/font_size = 23
+text = "STAGE 2"
+horizontal_alignment = 1
+
+[node name="lvl2_locked" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 395.0
+offset_right = 465.0
+offset_bottom = 532.0
+color = Color(0, 0, 0, 1)
+
+[node name="lvl2_completed" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 315.0
+offset_top = 395.0
+offset_right = 465.0
+offset_bottom = 532.0
+color = Color(0, 0, 0, 1)
+
+[node name="Stage3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 592.0
+offset_right = 328.0
+offset_bottom = 616.0
+theme_override_fonts/font = ExtResource("3_vu3je")
+theme_override_font_sizes/font_size = 23
+text = "STAGE 3"
+horizontal_alignment = 1
+
+[node name="lvl3_locked" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 623.0
+offset_right = 350.0
+offset_bottom = 760.0
+color = Color(0, 0, 0, 1)
+
+[node name="lvl3_completed" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 623.0
+offset_right = 350.0
+offset_bottom = 760.0
+color = Color(0, 0, 0, 1)
+
+[node name="lock1" type="Sprite2D" parent="."]
+position = Vector2(390.783, 463.938)
+scale = Vector2(0.418194, 0.418194)
+texture = ExtResource("3_jr33h")
+
+[node name="lock2" type="Sprite2D" parent="."]
+position = Vector2(275, 691)
+scale = Vector2(0.418, 0.418)
+texture = ExtResource("3_jr33h")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("6_guldo")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_w8ujy")
+centered = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://dppp2wm016vko"]
+
+[ext_resource type="Script" uid="uid://1gsmj0b53itt" path="res://script/player/player.gd" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://dl424kxy15pp0" path="res://assets/textures/player/Player01-Sheet.png" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://cj8s3fmgtbepl" path="res://entities/player/shield.tscn" id="2_8fjmc"]
+[ext_resource type="PackedScene" uid="uid://cagiu82pc5pu1" path="res://entities/laser/player_laser.tscn" id="2_bls4j"]
+[ext_resource type="PackedScene" uid="uid://cl7isp8k2o4gv" path="res://entities/explosion.tscn" id="3_8fjmc"]
+[ext_resource type="AudioStream" uid="uid://b818f1l54em7u" path="res://assets/audio/SFX/bullet_fire.mp3" id="3_sglur"]
+[ext_resource type="PackedScene" uid="uid://bbdi00q7utha8" path="res://entities/player/laser_beam.tscn" id="5_26q78"]
+[ext_resource type="PackedScene" uid="uid://cgeiftgesftar" path="res://entities/player/power_up.tscn" id="5_qiwj3"]
+[ext_resource type="PackedScene" uid="uid://d2gesdcnry7kq" path="res://ui/damage_text.tscn" id="7_bectd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abrql"]
+atlas = ExtResource("1_symyc")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sglur"]
+atlas = ExtResource("1_symyc")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bls4j"]
+atlas = ExtResource("1_symyc")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkugw"]
+atlas = ExtResource("1_symyc")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fjmc"]
+atlas = ExtResource("1_symyc")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfv1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abrql")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sglur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bls4j")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkugw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fjmc")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 10
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_abrql")
+speed = 250.0
+laser_scene = ExtResource("2_bls4j")
+shield_scene = ExtResource("2_8fjmc")
+powerup_activation_effect = ExtResource("5_qiwj3")
+powerup_duration = 5.0
+laser_beam_scene = ExtResource("5_26q78")
+beam_cooldown_time = 20.0
+explosion_scene = ExtResource("3_8fjmc")
+damage_text_scene = ExtResource("7_bectd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+sprite_frames = SubResource("SpriteFrames_sfv1e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-1, -23, -5, -13, -5, -5, -9, -2, -11, 2, -17, 3, -22, 8, -22, 16, -20, 18, -10, 19, -10, 23, 10, 23, 10, 19, 18, 19, 22, 18, 22, 8, 17, 3, 10, 3, 9, -2, 6, -3, 5, -5, 4, -14)
+
+[node name="LaserPosition" type="Marker2D" parent="."]
+
+[node name="LeftGun" type="Marker2D" parent="LaserPosition"]
+position = Vector2(-11, -3)
+
+[node name="RightGun" type="Marker2D" parent="LaserPosition"]
+position = Vector2(10, -3)
+
+[node name="SfxLaser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_sglur")
+
+[node name="ShieldCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PowerUpDurationTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="PowerUpCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BeamCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="MuzzleLaser" type="Marker2D" parent="."]
+position = Vector2(0, -39)
+
+[connection signal="timeout" from="PowerUpDurationTimer" to="." method="_on_powerup_duration_timer_timeout"]
